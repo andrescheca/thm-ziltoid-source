@@ -188,7 +188,6 @@ function App() {
       const originalAnswerIndex = QUESTIONS[
         originalQuestionIndex
       ].answers.findIndex((answer) => answer.correct);
-      console.log("Correct");
       setTimer((prevTimer) => prevTimer + TIME_INCREMENET);
       setCorrectAnswersCount((prevCount) => prevCount + 1);
       correctAnswersIndexes[originalQuestionIndex] = originalAnswerIndex;
@@ -202,7 +201,6 @@ function App() {
         gameContext.setGame("won");
       }
     } else {
-      console.log("Incorrect");
       setShields((prevShields) => prevShields - 1);
       setCorrectAnswersCount(0);
       if (shields === 1) {
@@ -210,7 +208,6 @@ function App() {
       }
     }
     setTimeout(() => {
-      console.log("animation ended");
       setShip((prevState: ShipState) => ({
         ...prevState,
         state: "idle",
@@ -273,10 +270,6 @@ function App() {
     initializeGame();
     gameContext.setGame("playing");
   };
-
-  useEffect(() => {
-    console.log(correctAnswersIndexes);
-  }, [correctAnswersIndexes]);
 
   useEffect(() => {
     let intervalId: number | undefined;
@@ -402,7 +395,6 @@ function App() {
                           : "text-green-600"
                       } flex flex-col items-center justify-center cursor-pointer`}
                       onClick={() => {
-                        console.log("ShipState: ", ship);
                         if (ship.canMove) {
                           setShip((prevState: ShipState) => ({
                             ...prevState,
