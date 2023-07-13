@@ -395,11 +395,25 @@ function App() {
                 >
                   {Array.from(Array(4).keys()).map((_, index) => (
                     <div
+                      key={index}
                       className={`${
                         ship.currentIndex === index
                           ? "text-green-400"
                           : "text-green-600"
-                      } relative flex flex-col items-center justify-center`}
+                      } flex flex-col items-center justify-center cursor-pointer`}
+                      onClick={() => {
+                        console.log("ShipState: ", ship);
+                        if (ship.canMove) {
+                          setShip((prevState: ShipState) => ({
+                            ...prevState,
+                            state: "moving",
+                            canMove: false,
+                            currentIndex: index,
+                            position: AVAILABLE_POSITIONS[index],
+                          }));
+                          checkAnswer(index);
+                        }
+                      }}
                     >
                       <div className="w-full text-center text-4xl font-bold">
                         {String.fromCharCode(65 + index)}
@@ -486,7 +500,7 @@ function App() {
         )}
         {gameContext.state === "game-over" && (
           <div className="text-center">
-            <div className="font-bold text-xl">Game Over</div>
+            <div className="font-bold text-xl pt-6">Game Over</div>
             <p className="py-4">
               You failed to get the ultimate cup of coffee to Ziltoid, the
               Omniscient.

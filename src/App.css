@@ -63,6 +63,29 @@
     background-position: 0 386px;
   }
 }
+
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.25),
+      0 0 1px rgba(255, 255, 255, 0.25), 0 0 9px rgba(255, 255, 255, 0.25),
+      0 0 10px rgba(0, 255, 170, 0.25), 0 0 20px rgba(0, 255, 170, 0.25),
+      0 0 30px rgba(0, 255, 170, 0.25), 0 0 40px rgba(0, 255, 170, 0.25),
+      0 0 15px rgba(0, 255, 170, 0.25);
+  }
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+}
+
 #space {
   background-image: url(assets/stars/medium.png);
   background-repeat: repeat;
@@ -87,28 +110,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-}
-/* add this keyframe animation */
-@keyframes flicker {
-  0%,
-  19%,
-  21%,
-  23%,
-  25%,
-  54%,
-  56%,
-  100% {
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.25),
-      0 0 1px rgba(255, 255, 255, 0.25), 0 0 9px rgba(255, 255, 255, 0.25),
-      0 0 10px rgba(0, 255, 170, 0.25), 0 0 20px rgba(0, 255, 170, 0.25),
-      0 0 30px rgba(0, 255, 170, 0.25), 0 0 40px rgba(0, 255, 170, 0.25),
-      0 0 15px rgba(0, 255, 170, 0.25);
-  }
-  20%,
-  24%,
-  55% {
-    text-shadow: none;
-  }
+  pointer-events: none;
 }
 .text-glow {
   animation: flicker 3s infinite;
